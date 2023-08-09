@@ -18,6 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Something went wrong : ' . $e->getMessage());
     }
 } else {
-    header('Location: ./../../index.php');
+    header('Location: ./../../public/index.php');
     die();
 }

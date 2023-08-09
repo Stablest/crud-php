@@ -34,7 +34,7 @@
 
     }
 
-    const res = await fetch("./includes/admin/admin-getusers.inc.php")
+    const res = await fetch("./../../src/admin/admin-getusers.inc.php")
     const data = await res.json();
     const html = populateDivs(data);
     $('#container').html(html)
@@ -57,11 +57,15 @@
             }
             updatedDataList.push(updatedData)
         })
-        const promises = []
-        updatedDataList.forEach((updatedData) => {
-            promises.push($.post('./includes/admin/admin-updateusers.inc.php', JSON.stringify(updatedData)).promise())
-        })
-        const result = await Promise.all(promises)
+        try {
+            const promises = []
+            updatedDataList.forEach((updatedData) => {
+                promises.push($.post('./../../src/admin/admin-updateusers.inc.php', JSON.stringify(updatedData)).promise())
+            })
+            const result = await Promise.all(promises)
+        } catch (e) {
+            console.error('Something went wrong')
+        }
     })
 
     function create_new_row(name) {

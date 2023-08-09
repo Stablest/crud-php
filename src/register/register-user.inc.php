@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         require_once './../session.inc.php';
         if ($errors) {
             $_SESSION['errors_register'] = $errors;
-            header("Location: ./../../register.php");
+            header("Location: ./../../public/register.php");
             die();
         }
         register_new_user($pdo, $username, $pwd, $email);
-        header("Location: ./../../index.php");
+        header("Location: ./../../public/index.php");
         $pdo = null;
         $stmt = null;
         die();
@@ -25,6 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die('Something went wrong : ' . $e->getMessage());
     }
 } else {
-    header('Location: ./../../register.php');
+    header('Location: ./../../public/register.php');
     die();
 }

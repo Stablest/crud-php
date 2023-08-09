@@ -1,10 +1,10 @@
 <?php
 
-if($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $pwd = $_POST['pwd'];
 
-    try{
+    try {
         require_once './../dbconnection.inc.php';
         require_once './login-user-controller.inc.php';
         require_once './login-user-model.inc.php';
@@ -12,31 +12,31 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors = check_valid_input($email, $pwd);
 
         require_once './../session.inc.php';
-        if($errors) {
+        if ($errors) {
             $_SESSION['errors_login'] = $errors;
-            header('Location: ./../../index.php');
+            header('Location: ./../../public/index.php');
             die();
         }
 
         $is_correct = is_login_correct($pdo, $pwd, $email);
 
-        if(!$is_correct) {
+        if (!$is_correct) {
             $errors['invalid credentials'] = 'E-mail ou senha errados';
             $_SESSION['errors_login'] = $errors;
-            header('Location: ./../../index.php');
+            header('Location: ./../../public/index.php');
             die();
         }
 
         require_once './../session-auth-sucess.inc.php';
-        
-        header('Location: ./../../dashboard.php');
+
+        header('Location: ./../../public/dashboard/dashboard.php');
         $pdo = null;
         $stmt = null;
         die();
     } catch (PDOException $e) {
-        die('Something went wrong : '.$e->getMessage());
+        die('Something went wrong : ' . $e->getMessage());
     }
 } else {
-    header('Location: ./../../index.php');
+    header('Location: ./../../public/index.php');
     die();
 }
