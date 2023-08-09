@@ -57,13 +57,11 @@
             }
             updatedDataList.push(updatedData)
         })
-        console.log('Updated Data : ', updatedDataList)
-        const result = await $.post('./includes/admin/admin-updateusers.inc.php', JSON.stringify(updatedDataList[0]))
-        console.log(result)
-        // changed_rows.forEach((element) => {
-
-        //     promises.push()
-        // })
+        const promises = []
+        updatedDataList.forEach((updatedData) => {
+            promises.push($.post('./includes/admin/admin-updateusers.inc.php', JSON.stringify(updatedData)).promise())
+        })
+        const result = await Promise.all(promises)
     })
 
     function create_new_row(name) {
