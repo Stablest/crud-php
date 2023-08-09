@@ -26,8 +26,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: ./../../index.php');
             die();
         }
+
+        require_once './../session-auth-sucess.inc.php';
         
-        header('Location: ./../../records.php');
+        header('Location: ./../../dashboard.php');
         $pdo = null;
         $stmt = null;
         die();
