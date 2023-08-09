@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die();
         }
         register_new_user($pdo, $username, $pwd, $email);
-        header("Location: ./../../records.php");
+        header("Location: ./../../index.php");
         $pdo = null;
         $stmt = null;
         die();
