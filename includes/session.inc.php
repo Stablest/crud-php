@@ -12,7 +12,7 @@
 
     session_start();
 
-    if(isset($_SESSION['regeneration_time'])) {
+    if(!isset($_SESSION['regeneration_time'])) {
         session_regenerate_id(true);
         $_SESSION['regeneration_time'] = time();
     } else {
