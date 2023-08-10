@@ -60,7 +60,12 @@
         try {
             const promises = []
             updatedDataList.forEach((updatedData) => {
-                promises.push($.post('./../../src/admin/admin-updateusers.inc.php', JSON.stringify(updatedData)).promise())
+                promises.push($.ajax({
+                    url: './../../src/user/user.inc.php',
+                    type: 'PUT',
+                    data: JSON.stringify(updatedData)
+                }).promise())
+                // promises.push($.post('./../../src/user/user.inc.php', JSON.stringify(updatedData)).promise())
             })
             const result = await Promise.all(promises)
         } catch (e) {
