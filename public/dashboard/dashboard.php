@@ -15,7 +15,7 @@ require_once './../../src/session.inc.php';
 
 <body class="bg-light">
     <?php
-    require_once './../header.php';
+    require_once './../welcome-username.php';
     ?>
     <main>
         <?php
